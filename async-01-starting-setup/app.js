@@ -27,8 +27,15 @@ const setTimer = (duration) => {
 
 async function trackUserHandler() {
   // let positionData;
-  const posData = await getPosition();
-  const timerData = await setTimer();
+  let posData;
+  let timerData;
+  try {
+    posData = await getPosition();
+    timerData = await setTimer();
+  } catch (error) {
+    console.log(error);
+  }
+  // try 구문 내의 모든 코드가 성공할 경우 실행
   console.log(timerData, posData);
   // .then((posData) => {
   //   positionData = posData;
