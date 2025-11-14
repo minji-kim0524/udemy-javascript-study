@@ -8,6 +8,7 @@ const postList = document.querySelector("ul");
 function sendHttpRequest(method, url, data) {
   // const promise = new Promise((resolve, reject) => {
   //   const xhr = new XMLHttpRequest();
+  // xhr.setRequestHeader('Content-type', 'application/json');
 
   // 요청구성 1단계
   // xhr.open(method, url);
@@ -34,6 +35,9 @@ function sendHttpRequest(method, url, data) {
   return fetch(url, {
     method: method,
     body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json",
+    },
   }).then((response) => {
     return response.json();
   });
