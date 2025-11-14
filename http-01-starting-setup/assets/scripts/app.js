@@ -6,41 +6,37 @@ const fetchButton = document.querySelector("#available-posts button");
 const postList = document.querySelector("ul");
 
 function sendHttpRequest(method, url, data) {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
+  // const promise = new Promise((resolve, reject) => {
+  //   const xhr = new XMLHttpRequest();
 
-    // 요청구성 1단계
-    xhr.open(method, url);
+  // 요청구성 1단계
+  // xhr.open(method, url);
 
-    xhr.responseType = "json";
+  // xhr.responseType = "json";
 
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(xhr.response);
-      } else {
-        reject(new Error("Something went wrong!"));
-      }
-      //   const listOfPosts = JSON.parse(xhr.response);
-      //   const listOfPosts = xhr.response;
-      //   console.log(listOfPosts);
-      //   for (const post of listOfPosts) {
-      //     const postEl = document.importNode(postTemplate.content, true);
-      //     postEl.querySelector("h2").textContent = post.title.toUpperCase();
-      //     postEl.querySelector("p").textContent = post.body;
-      //     listElement.append(postEl);
-      //   }
-    };
+  // xhr.onload = function () {
+  //   if (xhr.status >= 200 && xhr.status < 300) {
+  //     resolve(xhr.response);
+  //   } else {
+  //     reject(new Error("Something went wrong!"));
+  //   }
+  // };
 
-    xhr.onerror = function () {
-      reject(new Error("Failed to send request!"));
-      // console.log(xhr.response);
-      // console.log(xhr.status);
-    };
+  // xhr.onerror = function () {
+  //   reject(new Error("Failed to send request!"));
+  // };
 
-    // 요청 전송
-    xhr.send(JSON.stringify(data));
+  // 요청 전송
+  // xhr.send(JSON.stringify(data));
+  // });
+  // return promise;
+
+  return fetch(url, {
+    method: method,
+    body: JSON.stringify(data),
+  }).then((response) => {
+    return response.json();
   });
-  return promise;
 }
 
 // function fetchPosts() {
