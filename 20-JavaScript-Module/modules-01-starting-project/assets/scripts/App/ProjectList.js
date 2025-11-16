@@ -17,6 +17,9 @@ export class ProjectList {
   }
 
   connectDroppable() {
+    // console.log(window.DEFAULT_VALUE);
+    // 모듈에서의 globalThis 는 window 를 가리킴
+    console.log(globalThis.DEFAULT_VALUE);
     const list = document.querySelector(`#${this.type}-projects ul`);
 
     list.addEventListener("dragenter", (event) => {
