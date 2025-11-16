@@ -1,4 +1,8 @@
-export class Component {
+// 기명 내보내기
+export function doSomething() {}
+
+// 기본 내보기
+export default class {
   constructor(hostElementId, insertBefore = false) {
     if (hostElementId) {
       this.hostElement = document.getElementById(hostElementId);
