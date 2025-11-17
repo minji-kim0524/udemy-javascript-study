@@ -1,3 +1,4 @@
+import * as _ from "loadash";
 import { ProjectList } from "./App/ProjectList";
 
 // 전역객체1. window
@@ -7,6 +8,8 @@ import { ProjectList } from "./App/ProjectList";
 // - 브라우저 외에도 Node.js 에서도 사용가능 -> 어디에서나 사용가능
 // - undefined 표시되지않음이 보장됨
 globalThis.DEFAULT_VALUE = "MAX";
+
+console.log(_.difference([0, 1], [1, 2]));
 
 class App {
   static init() {
