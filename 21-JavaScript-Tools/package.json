@@ -8,13 +8,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "build:dev": "webpack-dev-server"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "webpack": "^5.102.1",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }
