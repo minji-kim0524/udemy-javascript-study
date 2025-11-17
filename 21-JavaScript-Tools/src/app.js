@@ -1,4 +1,4 @@
-import { ProjectList } from "./App/ProjectList.js";
+import { ProjectList } from "./App/ProjectList";
 
 // 전역객체1. window
 // window.DEFAULT_VALUE = "MAX";
