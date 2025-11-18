@@ -1,27 +1,41 @@
-// 쿠키 학습
-// HTTPRequest 에 연결되었음
-// 웹 페이지가 실제 서버로 제공되는 경우에만 사용 가능함
-// 장점 : 만료되도록 설정가능, 요청과 함께 서버에 보낼 수 있음
-
-// console.log(document.cookie);
+// indexedDB 학습
 
 const storeBtn = document.getElementById("store-btn");
 const retrBtn = document.getElementById("retrieve-btn");
 
-storeBtn.addEventListener("click", () => {
-  const userId = "u123";
-  const user = { name: "Max", age: 30 };
-  // 쿠키 추가 (교체x)
-  // max-age : 쿠키 유지시간 (초 단위)
-  // expires : 쿠키 유효기간 (고장 날짜 형식)
-  document.cookie = `uid=${userId}; max-age=360`;
-  document.cookie = `user=${JSON.stringify(user)}`;
-});
+// indexedDB 호출
+// 프로미스 객체가 아님 -> then 사용 불필요
+const dbRequest = indexedDB.open("StorageDummy", 1);
 
-retrBtn.addEventListener("click", () => {
-  const cookieData = document.cookie.split(";");
-  const data = cookieData.map((i) => {
-    return i.trim();
-  });
-  console.log(data[1].split("=")[1]); // user value
-});
+// 브라우저 교차 지원목적 -> onsuccess 이용
+dbRequest.onupgradeneeded = function (event) {
+  const db = event.target.result;
+
+  // 매개변수 위치별 의미
+  // 첫번째 : 객체 저장소의 이름
+  // 두번째 : 객체 저장소마다의 객체 식별자 (설정객체)
+
+  const objStore = db.createObjectStore("products", { keyPath: "id" });
+
+  objStore.transaction.oncomplete = function (event) {
+    // 첫번째 매개변수 : 저장소 이름
+    // 두번째 매개변수 : 저장소 접근모드
+    const productStore = db
+      .transaction("products", "readwrite")
+      .objectStore("products");
+    productStore.add({
+      id: "p1",
+      title: "A First Product",
+      price: 12.99,
+      tags: ["Expensive", "Luxury"],
+    });
+  };
+};
+
+dbRequest.onerror = function (event) {
+  console.log("ERROR");
+};
+
+storeBtn.addEventListener("click", () => {});
+
+retrBtn.addEventListener("click", () => {});
