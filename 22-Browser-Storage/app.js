@@ -3,13 +3,19 @@
 const storeBtn = document.getElementById("store-btn");
 const retrBtn = document.getElementById("retrieve-btn");
 
+let db;
+
 // indexedDB 호출
 // 프로미스 객체가 아님 -> then 사용 불필요
 const dbRequest = indexedDB.open("StorageDummy", 1);
 
+dbRequest.onsuccess = function (event) {
+  db = event.target.result;
+};
+
 // 브라우저 교차 지원목적 -> onsuccess 이용
 dbRequest.onupgradeneeded = function (event) {
-  const db = event.target.result;
+  db = event.target.result;
 
   // 매개변수 위치별 의미
   // 첫번째 : 객체 저장소의 이름
@@ -36,6 +42,28 @@ dbRequest.onerror = function (event) {
   console.log("ERROR");
 };
 
-storeBtn.addEventListener("click", () => {});
+storeBtn.addEventListener("click", () => {
+  if (!db) {
+    return;
+  }
+  const productStore = db
+    .transaction("products", "readwrite")
+    .objectStore("products");
+  productStore.add({
+    id: "p2",
+    title: "A Second Product",
+    price: 122.99,
+    tags: ["Expensive", "Luxury"],
+  });
+});
 
-retrBtn.addEventListener("click", () => {});
+retrBtn.addEventListener("click", () => {
+  const productStore = db
+    .transaction("products", "readwrite")
+    .objectStore("products");
+  const request = productStore.get("p2");
+
+  request.onsuccess = function () {
+    console.log(request.result);
+  };
+});
