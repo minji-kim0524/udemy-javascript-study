@@ -11,8 +11,11 @@ const user = {
   hobbies: ["Sports", "Cooking"],
 };
 
+// localStorage - 삭제되지 않음
+// sessionStorage - 탭을 닫거나 브라우저를 닫으면 저장된 값이 삭제됨
+
 storeBtn.addEventListener("click", () => {
-  localStorage.setItem("uid", userId);
+  sessoinStorage.setItem("uid", userId);
   localStorage.setItem("uid", JSON.stringify(user));
   console.log("클릭됨");
 });
