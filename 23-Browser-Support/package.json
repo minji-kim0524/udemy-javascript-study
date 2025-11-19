@@ -11,11 +11,15 @@
   },
   "author": "Maximilian Schwarzmueller",
   "license": "ISC",
+  "broswerslist": "> 0.2%, not dead",
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-loader": "^10.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.4.0",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1"
+    "webpack": "^5.103.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }
