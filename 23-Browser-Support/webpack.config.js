@@ -22,7 +22,12 @@ module.exports = {
           loader: "babel-loader",
           options: {
             targets: "defaults",
-            presets: [["@babel/preset-env"]],
+            presets: [
+              [
+                "@babel/preset-env",
+                { useBuiltIns: "usage", corejs: { version: 3 } },
+              ],
+            ],
           },
         },
       },

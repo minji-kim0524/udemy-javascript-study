@@ -1,3 +1,8 @@
+// import "core-js/features/promise";
+// seBuiltIns: "entry" 로 설정시 추가해야하는 내용
+// import "core-js/stable";
+// import "regenerator-runtime/runtime";
+
 const button = document.querySelector("button");
 const textParagraph = document.querySelector("p");
 

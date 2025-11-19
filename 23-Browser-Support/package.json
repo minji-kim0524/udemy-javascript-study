@@ -11,7 +11,7 @@
   },
   "author": "Maximilian Schwarzmueller",
   "license": "ISC",
-  "broswerslist": "> 0.2%, not dead",
+  "broswerslist": "> 0.3%, not dead",
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
@@ -21,5 +21,9 @@
     "webpack": "^5.103.0",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "core-js": "^3.47.0",
+    "regenerator-runtime": "^0.14.1"
   }
 }
