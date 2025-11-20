@@ -1,4 +1,5 @@
 import { Modal } from "./UI/Modal";
+import { Map } from "./UI/Map";
 
 // 객체 지향방법으로 진행
 class PlaceFinder {
@@ -6,8 +7,16 @@ class PlaceFinder {
     const addressForm = document.querySelector("form");
     const locateUserBtn = document.getElementById("locate-btn");
 
-    locateUserBtn.addEventListener("click", this.locateUserHandler);
-    addressForm.addEventListener("submit", this.findAddressHandler);
+    locateUserBtn.addEventListener("click", this.locateUserHandler.bind(this));
+    addressForm.addEventListener("submit", this.findAddressHandler.bind(this));
+  }
+
+  selectPlace(coordinates) {
+    if (this.map) {
+      this.map.render();
+    } else {
+      this.map = new Map(coordinates);
+    }
   }
 
   locateUserHandler() {
@@ -29,7 +38,7 @@ class PlaceFinder {
           lat: successResult.coords.latitude,
           lng: successResult.coords.longitude,
         };
-        console.log(coordinates);
+        this.selectPlace(coordinates);
       },
       (error) => {
         modal.hide();
