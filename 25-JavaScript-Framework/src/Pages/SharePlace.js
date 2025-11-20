@@ -1,18 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
-import SelectedPlace from '../UI/SelectedPlace';
-import Modal from '../UI/Modal';
-import Header from '../UI/Header';
+import SelectedPlace from "../UI/SelectedPlace";
+import Modal from "../UI/Modal";
+import Header from "../UI/Header";
 import {
   getCoordsFromAddress,
-  getAddressFromCoords
-} from '../Utility/Location';
-import './SharePlace.css';
+  getAddressFromCoords,
+} from "../Utility/Location";
+import "./SharePlace.css";
 
 const SharePlace = () => {
   const [chosenCoords, setChosenCoords] = useState();
   const [chosenAddress, setChosenAddress] = useState();
-  const [sharableLink, setSharableLink] = useState('');
+  const [sharableLink, setSharableLink] = useState("");
   const [isLoading, setIsLoading] = useState();
   const addressInputRef = useRef();
   const shareLinkRef = useRef();
@@ -27,11 +27,11 @@ const SharePlace = () => {
     }
   }, [chosenAddress, chosenCoords]);
 
-  const pickAddressHandler = async event => {
+  const pickAddressHandler = async (event) => {
     event.preventDefault();
     const address = addressInputRef.current.value;
     if (!address || address.trim().length === 0) {
-      alert('Invalid address entered - please try again!');
+      alert("Invalid address entered - please try again!");
       return;
     }
     setIsLoading(true);
@@ -48,26 +48,26 @@ const SharePlace = () => {
   const getUserLocationHandler = async () => {
     if (!navigator.geolocation) {
       alert(
-        'Location feature is not available in your browser - please use a more modern browser or manually enter an address.'
+        "Location feature is not available in your browser - please use a more modern browser or manually enter an address."
       );
       return;
     }
     setIsLoading(true);
     navigator.geolocation.getCurrentPosition(
-      async successResult => {
+      async (successResult) => {
         const coordinates = {
           lat: successResult.coords.latitude + Math.random() * 50,
-          lng: successResult.coords.longitude + Math.random() * 50
+          lng: successResult.coords.longitude + Math.random() * 50,
         };
         const address = await getAddressFromCoords(coordinates);
         setChosenCoords(coordinates);
         setChosenAddress(address);
         setIsLoading(false);
       },
-      error => {
+      (error) => {
         setIsLoading(false);
         alert(
-          'Could not locate you unfortunately. Please enter an address manually!'
+          "Could not locate you unfortunately. Please enter an address manually!"
         );
       }
     );
@@ -82,9 +82,9 @@ const SharePlace = () => {
     navigator.clipboard
       .writeText(sharableLink)
       .then(() => {
-        alert('Copied into clipboard!');
+        alert("Copied into clipboard!");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         shareLinkRef.current.select();
       });
@@ -92,6 +92,7 @@ const SharePlace = () => {
 
   return (
     <React.Fragment>
+      {/* 아래의 중괄호는 jsx 와 혼합된 자바스크립트 코드라는 것을 알려주는 역할 */}
       {isLoading && (
         <Modal>
           <div className="modal__content centered">
@@ -102,6 +103,7 @@ const SharePlace = () => {
 
       <Header title="Share a Place" />
 
+      {/* 아래의 fallbackText와 centerCoords는 자바스크립트에서의 매개변수 역할 */}
       <SelectedPlace
         fallbackText="You haven't selected any place yet. Please enter an address or
             locate yourself!"
