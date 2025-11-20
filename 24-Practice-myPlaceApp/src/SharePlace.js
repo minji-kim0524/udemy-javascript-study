@@ -1,3 +1,5 @@
+import { Modal } from "./UI/Modal";
+
 // 객체 지향방법으로 진행
 class PlaceFinder {
   constructor() {
@@ -15,9 +17,14 @@ class PlaceFinder {
       );
       return;
     }
-
+    const modal = new Modal(
+      "loading-modal-content",
+      "Loading location - please wait"
+    );
+    modal.show();
     navigator.geolocation.getCurrentPosition(
       (successResult) => {
+        modal.hide();
         const coordinates = {
           lat: successResult.coords.latitude,
           lng: successResult.coords.longitude,
@@ -25,6 +32,7 @@ class PlaceFinder {
         console.log(coordinates);
       },
       (error) => {
+        modal.hide();
         alert(
           "Could not locate you unfortunately. Please enter an address manually!"
         );
