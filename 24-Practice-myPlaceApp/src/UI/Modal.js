@@ -11,8 +11,8 @@ export class Modal {
         this.modalTemplateEl.content,
         true
       );
-      const modalElement = modalElements.querySelector(".modal");
-      const backdropElement = modalElements.querySelector(".backdrop");
+      this.modalElement = modalElements.querySelector(".modal");
+      this.backdropElement = modalElements.querySelector(".backdrop");
 
       // 실제 보여줄 콘텐츠
       const contentElement = document.importNode(
@@ -20,15 +20,24 @@ export class Modal {
         true
       );
 
-      modalElement.appendChild(contentElement);
+      this.modalElement.appendChild(contentElement);
 
-      document.body.insertAdjacentElement("afterbegin", modalElement);
-      document.body.insertAdjacentElement("afterbegin", backdropElement);
+      document.body.insertAdjacentElement("afterbegin", this.modalElement);
+      document.body.insertAdjacentElement("afterbegin", this.backdropElement);
     } else {
       // fallback code
       alert(this.fallbackText);
     }
   }
 
-  hide() {}
+  hide() {
+    if (this.modalElement) {
+      document.body.removeChild(this.modalElement);
+      // 최신 브라우저 사용시 -> this.modalElement.remove() 사용가능
+      document.body.removeChild(this.backdropElement);
+
+      this.modalElement = null;
+      this.backdropElement = null;
+    }
+  }
 }
