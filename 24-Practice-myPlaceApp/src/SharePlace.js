@@ -1,5 +1,6 @@
 import { Modal } from "./UI/Modal";
 import { Map } from "./UI/Map";
+import { getCoordsFromAddress } from "./Utility/Location";
 
 // 객체 지향방법으로 진행
 class PlaceFinder {
@@ -49,9 +50,9 @@ class PlaceFinder {
     );
   }
 
-  findAddressHandler(event) {
+  async findAddressHandler(event) {
     event.preventDefault();
-    const address = event.target.qeurySelector("input").value;
+    const address = event.target.querySelector("input").value;
     if (!address || address.trim().length === 0) {
       alert("Invalid address entered - please try again!");
       return;
@@ -61,6 +62,13 @@ class PlaceFinder {
       "Loading location - please wait"
     );
     modal.show();
+    try {
+      const coordinates = await getCoordsFromAddress(address);
+      this.selectPlace(coordinates);
+    } catch (err) {
+      alert(err.message);
+    }
+    modal.hide();
   }
 }
 
