@@ -9,6 +9,8 @@ const user = {
   [uid]: "p1",
   name: "Max",
   age: 30,
+  // 태그를 값으로 정의할 수 있게 함. 메서드 출력을 변경할 수 있음
+  [Symbol.toStringTag]: "User", // [object User]
 };
 
 user[uid] = "p3"; // 변경값 적용됨
@@ -24,3 +26,5 @@ console.log(user[Symbol("uid")]); // undefined 왜냐? 디버깅 목적으로만
 console.log(Symbol("uid") === Symbol("uid")); // false
 
 console.log(user);
+
+console.log(user.toString()); // 객체 -> 문자열 변환
