@@ -1,0 +1,26 @@
+// 심볼형
+
+// Libray land
+const uid = Symbol(); //새로운 심볼 생성
+console.log(uid);
+
+const user = {
+  //   id: "p1",
+  [uid]: "p1",
+  name: "Max",
+  age: 30,
+};
+
+user[uid] = "p3"; // 변경값 적용됨
+
+// app land => Using the library
+
+user.id = "p2"; // Symbol 로 설정된 uid 를 프로퍼티로 설정시 이 코드는 발생하지 않음
+
+console.log("1", user); // 객체 내의 [uid] 에 접근하여 해당 값을 'p2'로 변경할 수 없음
+
+console.log(user[Symbol("uid")]); // undefined 왜냐? 디버깅 목적으로만 해당 형태로 사용하고 엄밀히 따지면 새로운 심볼이 생성된 것임
+
+console.log(Symbol("uid") === Symbol("uid")); // false
+
+console.log(user);
