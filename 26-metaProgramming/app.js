@@ -133,3 +133,20 @@ Reflect.setPrototypeOf(course, {
 Reflect.defineProperty(course, "price", {});
 
 console.log(course.toString());
+
+// ----------------------------------------------------------------------------------------------------------------
+// Proxy API
+// - 특정 연산에 개입하고 자신만의 코드실행이 가능함
+
+const courseHandler = {
+  get(obj, propertyName) {
+    console.log(propertyName);
+    if (propertyName === "length") {
+      return 0;
+    }
+    return obj[propertyName] || "NOT FOUND";
+  },
+};
+// 프록시 생성
+const pCourse = new Proxy(course, courseHandler);
+console.log(pCourse.title, pCourse.length, pCourse.rating);
