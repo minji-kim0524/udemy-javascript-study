@@ -37,18 +37,43 @@ console.log(user.toString()); // 객체 -> 문자열 변환
 // - next 메서드를 가진 객체
 
 const company = {
-  curEmployees: 0,
+  //   curEmployees: 0,
   employees: ["Max", "Manu", "Anna"],
-  next() {
-    if (this.curEmployees >= this.employees.length) {
-      return { value: this.curEmployees, done: true };
+  //   next() {
+  //     if (this.curEmployees >= this.employees.length) {
+  //       return { value: this.curEmployees, done: true };
+  //     }
+  //     const returnValue = {
+  //       value: this.employees[this.curEmployees],
+  //       done: false,
+  //     };
+  //     this.curEmployees++;
+  //     return returnValue;
+  //   },
+  // 제너레이터 사용
+  // - function* 형태로 쓰임
+  // - 새로운 객체를 생성함
+  [Symbol.iterator]: function* employeeGenerator() {
+    // 루핑(반복) 로직
+    // let employee = company.next(); // 반복자 논리 생성
+
+    // while (!employee.done) {
+    //   //   console.log(employee.value);
+    //   yield employee.value;
+    //   employee = company.next();
+    // }
+
+    // ---------------------------------------
+    // 다른 방법
+    // 키워드 yield 은 return(반환) 의 의미라고 볼 수 있음
+    // - 해당 함수 호출에 대한 결과를 반환하게 하는 기능
+    // - return 대신 사용하는 이유: 일반 함수가 아니고 제너레이터 함수이기 때문
+    // - pause 기능이 있어서 함수가 재실행될 때 다시 처음부터 실행되는 것이 아니라, 일시정지됐던 시점부터 다시 시작됨
+    let currentEmployee = 0;
+    while (currentEmployee < this.employees.length) {
+      yield this.employees[currentEmployee];
+      currentEmployee++;
     }
-    const returnValue = {
-      value: this.employees[this.curEmployees],
-      done: false,
-    };
-    this.curEmployees++;
-    return returnValue;
   },
 };
 
@@ -60,9 +85,23 @@ const company = {
 
 // 대신해서 while문을 사용할 수도 있음
 
-let employee = company.next(); // 반복자 논리 생성
+// let employee = company.next(); // 반복자 논리 생성
 
-while (!employee.done) {
-  console.log(employee.value);
-  employee = company.next();
+// while (!employee.done) {
+//   console.log(employee.value);
+//   employee = company.next();
+// }
+
+// for...of문을 사용한 방법
+
+for (const employee of company) {
+  console.log(employee);
 }
+
+// const it = company.getEmployee();
+
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
