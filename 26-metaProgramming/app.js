@@ -146,7 +146,15 @@ const courseHandler = {
     }
     return obj[propertyName] || "NOT FOUND";
   },
+  set(obj, propertyName, newValue) {
+    if (propertyName === "rating") {
+      return;
+    }
+    obj[propertyName] = newValue;
+  },
 };
+
 // 프록시 생성
 const pCourse = new Proxy(course, courseHandler);
+pCourse.rating = 5;
 console.log(pCourse.title, pCourse.length, pCourse.rating);
