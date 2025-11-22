@@ -50,7 +50,7 @@ const company = {
   //     this.curEmployees++;
   //     return returnValue;
   //   },
-  // 제너레이터 사용
+  // 2. 제너레이터 사용
   // - function* 형태로 쓰임
   // - 새로운 객체를 생성함
   [Symbol.iterator]: function* employeeGenerator() {
@@ -108,3 +108,28 @@ for (const employee of company) {
 
 const persons = ["Max", "Manu"];
 console.log(persons);
+
+// ----------------------------------------------------------------------------------------------------------------
+// Reflect API
+// - Object API 는 레거시이고 Reflect API 는 최신(ES6 에 추가)이다.
+// Object APi 와의 차이점
+// - 주어진 메서드에 대해 true/false 를 반환하며 작동여부를 알려주고 에러를 표시해줌
+// (Object API에서는 정의되지 않았다고 반환 || 에러 알림 없음)
+// - 객체를 구성하고 작업하는데 필요한 모든 메서드들을 그룹화 해줌
+// (Obejct API에는 deleteProperty가 없음 -> 별도의 키워드인 delete 를 사용해야하는 번거로움 발생)
+
+const course = {
+  title: "JavaScript - The Complete Guide",
+};
+
+Reflect.setPrototypeOf(course, {
+  toString() {
+    return this.title;
+  },
+});
+
+// console.log(course.toString());
+
+Reflect.defineProperty(course, "price", {});
+
+console.log(course.toString());
