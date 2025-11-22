@@ -28,3 +28,41 @@ console.log(Symbol("uid") === Symbol("uid")); // false
 console.log(user);
 
 console.log(user.toString()); // 객체 -> 문자열 변환
+
+// ----------------------------------------------------------------------------------------------------------------
+
+// 반복자와 제너레이터
+
+// 1. 반복자
+// - next 메서드를 가진 객체
+
+const company = {
+  curEmployees: 0,
+  employees: ["Max", "Manu", "Anna"],
+  next() {
+    if (this.curEmployees >= this.employees.length) {
+      return { value: this.curEmployees, done: true };
+    }
+    const returnValue = {
+      value: this.employees[this.curEmployees],
+      done: false,
+    };
+    this.curEmployees++;
+    return returnValue;
+  },
+};
+
+// console.log(company.next());
+// console.log(company.next());
+// console.log(company.next());
+// console.log(company.next());
+// console.log(company.next());
+
+// 대신해서 while문을 사용할 수도 있음
+
+let employee = company.next(); // 반복자 논리 생성
+
+while (!employee.done) {
+  console.log(employee.value);
+  employee = company.next();
+}
