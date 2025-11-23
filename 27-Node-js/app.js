@@ -2,7 +2,8 @@ const http = require("http");
 
 // 서버 생성
 const server = http.createServer((request, response) => {
-  response.write("hello there!");
+  response.setHeader("Content-Type", "text/html");
+  response.write("<h1>Hello there!</h1>");
   response.end();
 });
 
