@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NodeJS Demo</title>
+  </head>
+  <body>
+    <!-- ejs를 활용한 동적 컨텐츠 렌더링 -->
+    <!-- 서버측에서 동적요소를 채우므로 브라우저에서 확인시 컨텐츠가 입력된 html 코드로 보임 -->
+    <h1>Hello <%= user %></h1>
+    <form method="POST" action="/">
+      <input name="username" type="text" /><button type="submit">Send</button>
+    </form>
+  </body>
+</html>
