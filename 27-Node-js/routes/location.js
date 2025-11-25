@@ -15,9 +15,19 @@ router.post("/add-location", (req, res, next) => {
     address: req.body.address,
     coords: { lat: req.body.lat, lng: req.body.lng },
   });
-  res.json({ messgae: "Stored location!", locId: id });
+  res.json({ message: "Stored location!", locId: id });
 });
 
-router.get("/location", (req, res, next) => {});
+router.get("/location/:lid", (req, res, next) => {
+  // url에 포함된 데이터 상수에 저장
+  const locationId = +req.params.lid;
+  const location = locationStorage.locations.find((loc) => {
+    return loc.id === locationId;
+  });
+  if (!location) {
+    return res.status(404).json({ message: "Not found!" });
+  }
+  res.json({ address: location.address, coordinates: location.coords });
+});
 
 module.exports = router;

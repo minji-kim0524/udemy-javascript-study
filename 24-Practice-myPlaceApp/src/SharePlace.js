@@ -38,7 +38,7 @@ class PlaceFinder {
     } else {
       this.map = new Map(coordinates);
     }
-    fetch("http://localhost:3000/add-location", {
+    fetch("http://localhost:3000/add-location/", {
       method: "POST",
       body: JSON.stringify({
         address: address,
