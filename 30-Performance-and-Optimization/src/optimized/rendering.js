@@ -1,4 +1,5 @@
 const productListEl = document.getElementById("product-list");
+// const renderedProduects = [];
 
 function createElement(product, prodId, deleteProductFn) {
   const newListEl = document.createElement("li");
@@ -54,6 +55,11 @@ export function updateProducts(product, prodId, deleteProductFn, isAdding) {
   if (isAdding) {
     const newProductEl = createElement(product, prodId, deleteProductFn);
     productListEl.insertAdjacentElement("afterbegin", newProductEl);
+    // 메모리 누수
+    // 누수확인 테스트용 코드
+    // renderProducts.push(newProductEl);
+    // 메모리 누수의 전형적인 예시
+    // - DOM에서는 제거하고 코드에서는 정리하지 않은 코드의 요소를 가리킴
   } else {
     const productEl = document.getElementById(prodId);
     // 아래 두 가지 방법은 모두 작동함
