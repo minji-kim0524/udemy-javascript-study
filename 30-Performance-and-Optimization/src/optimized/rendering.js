@@ -27,10 +27,27 @@ function createElement(product, prodId, deleteProductFn) {
 
 export function renderProducts(products, deleteProductFn) {
   productListEl.innerHTML = "";
+  // 마이크로 최적화
+  // 성능 평가함수 -> performance.now()
+  // const startTime = performance.now(); // 타임스탬프 제공
   products.forEach((product) => {
     const newListEl = createElement(product, prodId, deleteProductFn);
     productListEl.appendChild(newListEl);
   });
+
+  // for문 사용방법
+  // for문이 forEach 보다 속도는 빠르지만, 속도만 빠르다고해서 무조건 최적화를 할 이유는 없다.
+  // 큰 차이가 있는게 아니라면 더 간결한 코드가 최적화에 맞기도 하기때문이다.
+  // for (let i = 0; i < products.length; i++) {
+  //   const newListEl = createElement(
+  //     products[i],
+  //     products[i].id,
+  //     deleteProductFn
+  //   );
+  //   productListEl.appendChild(newListEl);
+  // }
+  // const endTime = performance.now();
+  // console.log(endTime - startTime);
 }
 
 export function updateProducts(product, prodId, deleteProductFn, isAdding) {

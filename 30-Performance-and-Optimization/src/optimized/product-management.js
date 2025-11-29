@@ -28,6 +28,7 @@ export function addProduct(event) {
     price: price,
   };
 
+  // unshift 가 느리지만, 모든 것을 최적화 하는 것은 안하는것만 못하다 (주의필요)
   products.unshift(newProduct);
-  updateProducts(pnewProduct, newProduct.id, deleteProduct, true);
+  updateProducts(newProduct, newProduct.id, deleteProduct, true);
 }
