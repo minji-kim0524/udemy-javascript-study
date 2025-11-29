@@ -3,7 +3,7 @@
 // - jest 에서는 ES6에서 지원하는 import 구문이 아닌 Node.js를 사용함
 // - import구문 사용불가는 아니지만, 더 복잡한 워크플로우 빌드와 추가적인 패키지가 필요함
 // (현재 강의에서는 Node.js로 사용)
-const { generateText } = require("./util");
+const { generateText, checkAndGenerate } = require("./util");
 
 // test 함수 (Jest 제공)
 // - 첫번째 인자: 테스트명이나 테스트에 대한 설명
@@ -21,4 +21,10 @@ test("should output name and age", () => {
 test("should output data-less text", () => {
   const text = generateText("", null);
   expect(text).toBe(" (null years old)");
+});
+
+// 유닛 테스트와 함수명을 제외하고는 동일한 형태지만, 함수를 살펴보면 통합 테스트임
+test("should generate a valid text output", () => {
+  const text = checkAndGenerate("Max", 29);
+  expect(text).toBe("Max (29 years old)");
 });
