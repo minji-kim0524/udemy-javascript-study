@@ -1,3 +1,4 @@
+const puppeteer = require("puppeteer");
 // jest 테스트에 import 하는 네이티브 방법
 // 구조분해할당 구문
 // - jest 에서는 ES6에서 지원하는 import 구문이 아닌 Node.js를 사용함
@@ -28,3 +29,24 @@ test("should generate a valid text output", () => {
   const text = checkAndGenerate("Max", 29);
   expect(text).toBe("Max (29 years old)");
 });
+
+test("should create an element with text and correct class", async () => {
+  // 브라우저 생성 -> 프로미스 반환
+  const browser = await puppeteer.launch({
+    headless: true,
+    // slowMo: 80,
+    // args: ["--window-size=1920,1080"],
+  });
+
+  const page = await browser.newPage();
+  await page.goto(
+    "file:///Users/minji/bootcamp/udemy-javascript-study/31-Testing/index.html"
+  );
+  await page.click("input#name");
+  await page.type("input#name", "Anna");
+  await page.click("input#age");
+  await page.type("input#age", "28");
+  await page.click("#btnAddUser");
+  const finalText = await page.$eval(".user-item", (el) => el.textContent);
+  expect(finalText).toBe("Anna (28 years old)");
+}, 10000);
