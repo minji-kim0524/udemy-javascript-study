@@ -9,3 +9,13 @@
 관련개념
 
 - 상수시간: 한 함수에 있는 코드가 단 한 번 실행되는 것을 의미함
+
+### 시간복잡도
+
+1. 상수 시간 복잡도(Constant Time Complexity) => O(1)
+2. 선형 시간 복잡도(Linear Time Complexity) => O(n)
+3. 2차 시간 복잡도(Quadratic Time Complexity) => O(n^2)
+4. 로그 시간 복잡도 => O(log n)
+
+- 선형시간 복잡도 보다는 상대적으로 낮은 속도로 증가함
+- 예: 이진 검색 알고리즘
