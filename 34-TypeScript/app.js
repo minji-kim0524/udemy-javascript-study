@@ -15,10 +15,21 @@ function printResult(result) {
 // const result = add(5, 3);
 // let isDone = false;
 // console.log(result);
+var results = [];
+var names = ["Max"];
 buttonElement.addEventListener("click", function () {
     // 앞에 '+' 표시를 추가하면 문자열을 숫자로 변환할 수 있음
     var num1 = +num1Input.value;
     var num2 = +num2Input.value;
     var result = add(num1, num2);
-    printResult(result);
+    var resultContainer = {
+        res: result,
+        print: function () {
+            console.log(this.res);
+        },
+    };
+    (num1 = 0), (num2 = 0), results.push(resultContainer);
+    // results.push(5);
+    // printResult(results);
+    results[0].print();
 });

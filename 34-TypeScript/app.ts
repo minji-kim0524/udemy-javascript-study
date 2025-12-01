@@ -21,10 +21,23 @@ function printResult(result) {
 
 // console.log(result);
 
+const results: { res: number; print: () => void }[] = [];
+const names = ["Max"];
+
 buttonElement.addEventListener("click", () => {
   // 앞에 '+' 표시를 추가하면 문자열을 숫자로 변환할 수 있음
   const num1 = +num1Input.value;
   const num2 = +num2Input.value;
   const result = add(num1, num2);
-  printResult(result);
+  const resultContainer = {
+    res: result,
+    print() {
+      console.log(this.res);
+    },
+  };
+
+  results.push(resultContainer);
+  // results.push(5);
+  // printResult(results);
+  results[0].print();
 });
