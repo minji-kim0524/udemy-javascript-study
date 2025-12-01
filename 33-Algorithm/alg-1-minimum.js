@@ -1,3 +1,5 @@
+// BEST CASE: [5] => O(1)
+// WORST CASE: [3, 2] => O(n)
 function getMin(numbers) {
   if (!numbers.length) {
     throw new Error("Should not be an empty array!");
@@ -29,6 +31,9 @@ function getMin(numbers) {
 
 // ----------------------------------------------------------------------------------
 // 다른 방법 - 배열을 오름차순으로 정렬한 후 첫 번째 요소 반환하기
+// BEST CASE: [1, 2, 3] => O(n^2)
+// WORST CASE: [3, 2, 1] => O(n^2)
+// AVERAGE CASE: [?, ?, ?] => O(n^2)
 function getMin2(numbers) {
   if (!numbers.length) {
     throw new Error("Should not be an empty array!");
