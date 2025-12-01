@@ -12,8 +12,27 @@ function add(a: number, b: number) {
 //   console.log(result);
 // }
 
-function printResult(result) {
-  console.log(result);
+type PrintMode = "console" | "alert";
+enum OutputMode {
+  CONSOLE,
+  ALERT,
+}
+
+// function printResult(result: string | number, printMode: PrintMode) {
+//   if (printMode === "console") {
+//     console.log(result);
+//   } else if (printMode === "alert") {
+//     alert(result);
+//   }
+// }
+
+// 이넘(enum) 타입활용 예시
+function printResult(result: string | number, printMode: OutputMode) {
+  if (printMode === OutputMode.CONSOLE) {
+    console.log(result);
+  } else if (printMode === OutputMode.ALERT) {
+    alert(result);
+  }
 }
 
 // const result = add(5, 3);
@@ -21,7 +40,10 @@ function printResult(result) {
 
 // console.log(result);
 
-const results: { res: number; print: () => void }[] = [];
+// 자체타입 생성 << 타입 별칭(Type Alias)
+type CalculationResults = { res: number; print: () => void }[];
+
+const results: CalculationResults = [];
 const names = ["Max"];
 
 buttonElement.addEventListener("click", () => {
@@ -39,5 +61,7 @@ buttonElement.addEventListener("click", () => {
   results.push(resultContainer);
   // results.push(5);
   // printResult(results);
-  results[0].print();
+  // results[0].print();
+  printResult(result, OutputMode.CONSOLE);
+  printResult(result, OutputMode.ALERT);
 });

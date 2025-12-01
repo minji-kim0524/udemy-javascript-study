@@ -9,12 +9,14 @@ function add(a, b) {
 // function printResult(result): void {
 //   console.log(result);
 // }
-function printResult(result) {
-    console.log(result);
+function printResult(result, printMode) {
+    if (printMode === "console") {
+        console.log(result);
+    }
+    else if (printMode === "alert") {
+        alert(result);
+    }
 }
-// const result = add(5, 3);
-// let isDone = false;
-// console.log(result);
 var results = [];
 var names = ["Max"];
 buttonElement.addEventListener("click", function () {
@@ -28,8 +30,10 @@ buttonElement.addEventListener("click", function () {
             console.log(this.res);
         },
     };
-    (num1 = 0), (num2 = 0), results.push(resultContainer);
+    results.push(resultContainer);
     // results.push(5);
     // printResult(results);
-    results[0].print();
+    // results[0].print();
+    printResult(result, "console");
+    printResult(result, "alert");
 });
