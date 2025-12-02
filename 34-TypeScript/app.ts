@@ -90,9 +90,17 @@ interface CalculationContainer {
 }
 
 // 자체타입 생성 << 타입 별칭(Type Alias)
-type CalculationResults = { res: number; print: () => void }[];
+// type CalculationResults = { res: number; print: () => void }[];
 
-const results: CalculationResults = [];
+type CalculationResults = CalculationContainer[];
+
+// Promise 유형
+// - fetch API를 이용하여 데이터를 반환하는 유형
+
+// 아래에서 '[]'의 배열부분을 '제네릭 유형' 이라고 함
+// - 형태예시: Array<T> << 여기서 <T>에 배열의 타입을 명시함
+// - 배열과 프로미스는 빌트인 제네릭 유형으로 자체 제네릭 유형을 설계할 수 있음
+const results: Array<CalculationContainer> = [];
 const names = ["Max"];
 
 buttonElement.addEventListener("click", () => {
@@ -114,3 +122,13 @@ buttonElement.addEventListener("click", () => {
   printResult(result, OutputMode.CONSOLE);
   printResult(result, OutputMode.ALERT);
 });
+
+// 제네릭 함수
+// - 특정 타입에 얽매이지 않고 다양한 타입의 인수를 처리할 수 있도록 하는 함수
+function logAndEcho<T>(val: T) {
+  console.log(val);
+  return val;
+}
+
+// 위 제네릭 함수 활용 예시
+logAndEcho<string>("Hi there!").split(" ");
