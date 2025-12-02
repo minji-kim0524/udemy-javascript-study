@@ -1,3 +1,42 @@
+// 방법1.
+// class User {
+//   // 필드
+//   name: string; // 아무것도 설정하지 않을 경우, 기본값은 public
+//   private age: number; // private 설정시, 클래스 내부에서만 사용가능
+
+//   // 프로퍼티
+//   constructor(name: string, age: number) {
+//     this.name = name;
+//     this.age = age;
+//   }
+// }
+
+interface Greetable {
+  name: string;
+}
+
+interface Printable {
+  print(): void;
+}
+
+// 방법2.
+// - 인터페이스로 확장시, 클래스는 인터페이스가 요구하는 것보다 더 많이 추가할 수 있으나,
+// 더 적게 추가할 수는 없음
+class User implements Greetable, Printable {
+  constructor(public name: string, private age: number) {}
+
+  print() {
+    console.log(this.name);
+  }
+}
+
+// 클래스 상속
+class Admin extends User {
+  constructor(name: string, age: number, private permissions: string[]) {
+    super(name, age);
+  }
+}
+
 const num1Input = document.getElementById("num1") as HTMLInputElement;
 const num2Input = <HTMLInputElement>document.getElementById("num2");
 const buttonElement = document.querySelector("button");
@@ -39,6 +78,16 @@ function printResult(result: string | number, printMode: OutputMode) {
 // let isDone = false;
 
 // console.log(result);
+
+// 자체타입 생성 << 인터페이스(interface) 활용
+// - new 키워드 사용불가
+// - 객체에 대한 블루프린트로 사용
+// - 클래스가 특정 구조를 갖도록 특정 프로퍼티를 가져오게 강제성을 띄게함
+// - 사용이유: 추가 타입 안정성을 주고 특정 클래스를 보장함
+interface CalculationContainer {
+  res: number;
+  print(): void;
+}
 
 // 자체타입 생성 << 타입 별칭(Type Alias)
 type CalculationResults = { res: number; print: () => void }[];
