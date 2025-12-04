@@ -1,1 +1,1 @@
-alert("This works");
+// 계산기 로직
