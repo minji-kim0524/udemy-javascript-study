@@ -9,6 +9,12 @@ let currentResult = defaultResult;
 
 currentResult = ((currentResult + 10) * 3) / 2 - 1;
 
-let calculationDescription = "(" + defaultResult + "+ 10) * 3 / 2 -1";
+// 템플릿 리터럴 사용 (백틱)
+// - 줄바꿈 적용가능
+let calculationDescription = `(${defaultResult}+ 10) * 3 / 2 -1`;
 
-outputResult(currentResult, calculationDescription);
+// 일반 따옴표 사이의 문자열은 공백이나 줄바꿈이 적용되지 않음
+// - 줄 바꿈 적용을 위해서는 특수문자 사용이 필요함 -> \n(백슬래시n)
+let errorMessage = "An error \n" + "occurred!";
+
+outputResult(currentResult, errorMessage);
