@@ -12,28 +12,31 @@ let currentResult = defaultResult;
 // 매개변수 num1, num2는 함수 본문 내에서만 사용가능함
 // - 함수 정의 위치는 크게 상관없음
 // - 함수 외부에 정의된 변수 및 상수에 접근할 수 있음
-function add(num1, num2) {
+function add() {
   // 로컬 스코프(블록 스코프)
   // - 함수 내부에 선언된 로컬 및 블록 스코프 변수는 외부에서 사용할 수 없음
-  const result = num1 + num2;
+  currentResult = currentResult + userInput.value;
+  outputResult(currentResult, "");
   //   alert("The result is " + result);
-  return result;
 }
 
 // 함수 호출
 // add(1, 2);
 // add(5, 5);
 
-currentResult = add(1, 2);
+// currentResult = add(1, 2);
 
 // currentResult = ((currentResult + 10) * 3) / 2 - 1;
 
 // 템플릿 리터럴 사용 (백틱)
 // - 줄바꿈 적용가능
-let calculationDescription = `(${defaultResult}+ 10) * 3 / 2 -1`;
+// let calculationDescription = `(${defaultResult}+ 10) * 3 / 2 -1`;
 
 // 일반 따옴표 사이의 문자열은 공백이나 줄바꿈이 적용되지 않음
 // - 줄 바꿈 적용을 위해서는 특수문자 사용이 필요함 -> \n(백슬래시n)
 // let errorMessage = "An error \n" + "occurred!";
 
-outputResult(currentResult, calculationDescription);
+// 브라우저 내장함수 addEventListener
+// - 첫번째 인자: 리스닝하고자 하는 이벤트를 식별하는 문자열
+// - 두번재 인자: 버튼 클릭시 실행되어야하는 함수
+addBtn.addEventListener("click", add);
