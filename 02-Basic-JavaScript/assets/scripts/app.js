@@ -12,14 +12,17 @@ let currentResult = defaultResult;
 // 매개변수 num1, num2는 함수 본문 내에서만 사용가능함
 function add(num1, num2) {
   const result = num1 + num2;
-  alert("The result is " + result);
+  //   alert("The result is " + result);
+  return result;
 }
 
 // 함수 호출
-add(1, 2);
-add(5, 5);
+// add(1, 2);
+// add(5, 5);
 
-currentResult = ((currentResult + 10) * 3) / 2 - 1;
+currentResult = add(1, 2);
+
+// currentResult = ((currentResult + 10) * 3) / 2 - 1;
 
 // 템플릿 리터럴 사용 (백틱)
 // - 줄바꿈 적용가능
