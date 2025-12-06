@@ -15,7 +15,7 @@ let currentResult = defaultResult;
 function add() {
   // 로컬 스코프(블록 스코프)
   // - 함수 내부에 선언된 로컬 및 블록 스코프 변수는 외부에서 사용할 수 없음
-  currentResult = currentResult + userInput.value;
+  currentResult = currentResult + parseInt(userInput.value);
   outputResult(currentResult, "");
   //   alert("The result is " + result);
 }
