@@ -9,14 +9,21 @@ let currentResult = defaultResult;
 
 // 함수 선언(정의)
 // 실행 가능한 코드에 중괄호가 있는 경우에는 중괄호 뒤에 세미콜론을 사용하지 않음
-// 매개변수 num1, num2는 함수 본문 내에서만 사용가능함
+// 매개변수는 함수 본문 내에서만 사용가능함
 // - 함수 정의 위치는 크게 상관없음
 // - 함수 외부에 정의된 변수 및 상수에 접근할 수 있음
+
+function getUserNumberInput() {
+  return parseInt(userInput.value);
+}
+
 function add() {
   // 로컬 스코프(블록 스코프)
   // - 함수 내부에 선언된 로컬 및 블록 스코프 변수는 외부에서 사용할 수 없음
-  currentResult = currentResult + parseInt(userInput.value);
-  outputResult(currentResult, "");
+  const enteredNumber = getUserNumberInput();
+  const calcDesscription = `${currentResult} + ${enteredNumber}`; // 템플릿 리터럴에 들어오는 값은 숫자라 하더라도 자동으로 문자열로 처리됨
+  currentResult = currentResult + enteredNumber;
+  outputResult(currentResult, calcDesscription);
   //   alert("The result is " + result);
 }
 
