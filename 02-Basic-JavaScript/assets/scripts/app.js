@@ -14,13 +14,15 @@ let currentResult = defaultResult;
 // - 함수 외부에 정의된 변수 및 상수에 접근할 수 있음
 
 // 반복 및 재사용되는 로직 분리 --------------------------------------------
+// Gets input from input field
 function getUserNumberInput() {
   return parseInt(userInput.value);
 }
 
+// Generate and wirtes calculation log
 function createAndWriteLog(operator, resultBeforeCalc, calcNumber) {
   const calcDesscription = `${resultBeforeCalc} ${operator} ${calcNumber}`; // 템플릿 리터럴에 들어오는 값은 숫자라 하더라도 자동으로 문자열로 처리됨
-  outputResult(currentResult, calcDesscription);
+  outputResult(currentResult, calcDesscription); // from vendor file
 }
 
 // ------------------------------------------------------------------
