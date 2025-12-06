@@ -13,19 +13,55 @@ let currentResult = defaultResult;
 // - 함수 정의 위치는 크게 상관없음
 // - 함수 외부에 정의된 변수 및 상수에 접근할 수 있음
 
+// 반복 및 재사용되는 로직 분리 --------------------------------------------
 function getUserNumberInput() {
   return parseInt(userInput.value);
 }
 
+function createAndWriteLog(operator, resultBeforeCalc, calcNumber) {
+  const calcDesscription = `${resultBeforeCalc} ${operator} ${calcNumber}`; // 템플릿 리터럴에 들어오는 값은 숫자라 하더라도 자동으로 문자열로 처리됨
+  outputResult(currentResult, calcDesscription);
+}
+
+// ------------------------------------------------------------------
+
+// 사칙연산 로직---------------------------------------------------------
+// 덧셈
 function add() {
   // 로컬 스코프(블록 스코프)
   // - 함수 내부에 선언된 로컬 및 블록 스코프 변수는 외부에서 사용할 수 없음
   const enteredNumber = getUserNumberInput();
-  const calcDesscription = `${currentResult} + ${enteredNumber}`; // 템플릿 리터럴에 들어오는 값은 숫자라 하더라도 자동으로 문자열로 처리됨
-  currentResult = currentResult + enteredNumber;
-  outputResult(currentResult, calcDesscription);
+  const initialResult = currentResult;
+  currentResult = currentResult - enteredNumber;
+  createAndWriteLog("+", initialResult, enteredNumber);
   //   alert("The result is " + result);
 }
+
+// 뺄셈
+function subtract() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult = currentResult - enteredNumber;
+  createAndWriteLog("-", initialResult, enteredNumber);
+}
+
+// 곱하기
+function multiply() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult = currentResult * enteredNumber;
+  createAndWriteLog("*", initialResult, enteredNumber);
+}
+
+// 나눗셈
+function divide() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult = currentResult / enteredNumber;
+  createAndWriteLog("/", initialResult, enteredNumber);
+}
+
+// ------------------------------------------------------------------
 
 // 함수 호출
 // add(1, 2);
@@ -47,3 +83,6 @@ function add() {
 // - 첫번째 인자: 리스닝하고자 하는 이벤트를 식별하는 문자열
 // - 두번재 인자: 버튼 클릭시 실행되어야하는 함수
 addBtn.addEventListener("click", add);
+subtractBtn.addEventListener("click", subtract);
+multiplyBtn.addEventListener("click", multiply);
+divideBtn.addEventListener("click", divide);
