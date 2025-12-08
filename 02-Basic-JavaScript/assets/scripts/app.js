@@ -46,6 +46,8 @@ function add() {
   };
   // 배열에 요소 추가 (push)
   logEntries.push(logEntry);
+  // 객체의 데이터로 접근하는 방법
+  console.log(logEntry.operation);
   console.log(logEntries);
   // 배열의 특정요소 접근방법
   // - 배열 변수명 뒤에 요소의 위치를 입력한 대괄호 기재
