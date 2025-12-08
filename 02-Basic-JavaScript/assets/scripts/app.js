@@ -34,7 +34,7 @@ function add() {
   // - 함수 내부에 선언된 로컬 및 블록 스코프 변수는 외부에서 사용할 수 없음
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult - enteredNumber;
+  currentResult += enteredNumber;
   createAndWriteLog("+", initialResult, enteredNumber);
   //   alert("The result is " + result);
 }
@@ -43,7 +43,7 @@ function add() {
 function subtract() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult - enteredNumber;
+  currentResult -= enteredNumber;
   createAndWriteLog("-", initialResult, enteredNumber);
 }
 
@@ -51,7 +51,7 @@ function subtract() {
 function multiply() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult * enteredNumber;
+  currentResult *= enteredNumber;
   createAndWriteLog("*", initialResult, enteredNumber);
 }
 
@@ -59,7 +59,7 @@ function multiply() {
 function divide() {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult / enteredNumber;
+  currentResult /= enteredNumber;
   createAndWriteLog("/", initialResult, enteredNumber);
 }
 
