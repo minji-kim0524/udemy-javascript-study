@@ -26,6 +26,24 @@ function createAndWriteLog(operator, resultBeforeCalc, calcNumber) {
   outputResult(currentResult, calcDesscription); // from vendor file
 }
 
+function writeToLog(
+  operationIdentifier,
+  prevResult,
+  operationNumber,
+  newResult
+) {
+  const logEntry = {
+    operation: operationIdentifier,
+    prevResult: prevResult,
+    number: operationNumber,
+    result: newResult,
+  };
+  // 배열에 요소 추가 (push)
+  logEntries.push(logEntry);
+  // 객체의 데이터로 접근하는 방법
+  console.log(logEntry.operation);
+  console.log(logEntries);
+}
 // ------------------------------------------------------------------
 
 // 사칙연산 로직---------------------------------------------------------
@@ -38,21 +56,23 @@ function add() {
   currentResult += enteredNumber;
   createAndWriteLog("+", initialResult, enteredNumber);
   //   alert("The result is " + result);
-  const logEntry = {
-    operation: "ADD",
-    prevResult: initialResult,
-    number: enteredNumber,
-    result: currentResult,
-  };
+  //   const logEntry = {
+  //     operation: "ADD",
+  //     prevResult: initialResult,
+  //     number: enteredNumber,
+  //     result: currentResult,
+  //   };
   // 배열에 요소 추가 (push)
-  logEntries.push(logEntry);
+  //   logEntries.push(logEntry);
   // 객체의 데이터로 접근하는 방법
-  console.log(logEntry.operation);
-  console.log(logEntries);
+  //   console.log(logEntry.operation);
+  //   console.log(logEntries);
   // 배열의 특정요소 접근방법
   // - 배열 변수명 뒤에 요소의 위치를 입력한 대괄호 기재
   // - 배열 또는 배열의 인덱스는 '0'부터 시작함
   //   console.log(logEntries[0]);
+
+  writeToLog("ADD", initialResult, enteredNumber, currentResult);
 }
 
 // 뺄셈
@@ -61,6 +81,7 @@ function subtract() {
   const initialResult = currentResult;
   currentResult -= enteredNumber;
   createAndWriteLog("-", initialResult, enteredNumber);
+  writeToLog("SUBTRACT", initialResult, enteredNumber, currentResult);
 }
 
 // 곱하기
@@ -69,6 +90,7 @@ function multiply() {
   const initialResult = currentResult;
   currentResult *= enteredNumber;
   createAndWriteLog("*", initialResult, enteredNumber);
+  writeToLog("MULTIPLY", initialResult, enteredNumber, currentResult);
 }
 
 // 나눗셈
@@ -77,6 +99,7 @@ function divide() {
   const initialResult = currentResult;
   currentResult /= enteredNumber;
   createAndWriteLog("/", initialResult, enteredNumber);
+  writeToLog("DIVIDE", initialResult, enteredNumber, currentResult);
 }
 
 // ------------------------------------------------------------------
