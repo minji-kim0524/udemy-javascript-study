@@ -6,6 +6,7 @@
 const defaultResult = 0;
 // 변수 선언 및 초기화
 let currentResult = defaultResult;
+let logEntries = [];
 
 // 함수 선언(정의)
 // 실행 가능한 코드에 중괄호가 있는 경우에는 중괄호 뒤에 세미콜론을 사용하지 않음
@@ -37,6 +38,13 @@ function add() {
   currentResult += enteredNumber;
   createAndWriteLog("+", initialResult, enteredNumber);
   //   alert("The result is " + result);
+  // 배열에 요소 추가 (push)
+  logEntries.push(enteredNumber);
+  console.log(logEntries);
+  // 배열의 특정요소 접근방법
+  // - 배열 변수명 뒤에 요소의 위치를 입력한 대괄호 기재
+  // - 배열 또는 배열의 인덱스는 '0'부터 시작함
+  console.log(logEntries[0]);
 }
 
 // 뺄셈
