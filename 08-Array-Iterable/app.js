@@ -27,3 +27,25 @@ const moreNumbers = Array.from("Hi!");
 const arrayListItems = Array.from(listItems);
 console.log(moreNumbers); // (3) ["H", "i", "!"]
 console.log(arrayListItems);
+
+// 배열 저장
+const hobbies = ["Cooking", "Sports"];
+const personalData = [30, "Max", { moreDetail: [] }];
+
+// 중첩 또는 다차원 배열
+const analyticsData = [
+  [1, 1.6],
+  [-5.4, 2.1],
+];
+
+// 중첩 배열의 반복문
+for (const data of analyticsData) {
+  // [1, 1.6], [-5.4, 2.1]
+  for (const dataPoint of data) {
+    // 1, 1.6, -5.4, 2.1
+    console.log(dataPoint);
+  }
+}
+
+// 배열은 인덱스를 기반으로 함
+console.log(personalData[1]); // "Max"
