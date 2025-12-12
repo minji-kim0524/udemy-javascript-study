@@ -110,3 +110,17 @@ const storedResults = testResults.concat([3.99, 2]);
 testResults.push(5.91);
 
 console.log(storedResults, testResults);
+
+// indexOf()
+// - 배열 내에서 일치하는 첫번째 요소의 인덱스를 반환하고 종료됨
+console.log(testResults, indexOf(1.5));
+
+// lastIndexOf()
+// - 배열의 오른쪽부터 검색시 사용
+
+// indexOf(), lastIndexOf()
+// - 원시값에 대해서는 실행되지만, 참조값에 대해서는 실행되지 않음 -> 객체가 있으면 실행되지않음
+// - 해당되는 어떤 요소도 찾기 못하면 '-1' 을 반환함
+
+const personData = [{ name: "Max" }, { name: "Manuel" }];
+console.log(personData.indexOf({ name: "Manuel" }));
