@@ -111,6 +111,7 @@ testResults.push(5.91);
 
 console.log(storedResults, testResults);
 
+// ----------------------------------------------------
 // indexOf()
 // - 배열 내에서 일치하는 첫번째 요소의 인덱스를 반환하고 종료됨
 console.log(testResults, indexOf(1.5));
@@ -124,3 +125,20 @@ console.log(testResults, indexOf(1.5));
 
 const personData = [{ name: "Max" }, { name: "Manuel" }];
 console.log(personData.indexOf({ name: "Manuel" }));
+
+// ----------------------------------------------------
+// find() 메서드
+// - 익명 함수를 인자로 가짐
+// - 배열의 객체와 동일한 객체를 반환하며 복사하지는 않음
+const manuel = personData.find((person, idx, persons) => {
+  return person.name === "Manuel";
+});
+
+console.log(manuel);
+
+// findIndex() 메서드
+const maxIndex = personData.findIndex((person, idx, persons) => {
+  return person.name === "Max";
+});
+
+console.log(maxIndex);
