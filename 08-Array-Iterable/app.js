@@ -116,6 +116,10 @@ console.log(storedResults, testResults);
 // - 배열 내에서 일치하는 첫번째 요소의 인덱스를 반환하고 종료됨
 console.log(testResults, indexOf(1.5));
 
+// includes() 메서드
+// - 불리언값(true/false)을 반환함 -> 배열의 일부인지를 확인할 때 유용함
+console.log(testResults.includes(10.99)); // true
+
 // lastIndexOf()
 // - 배열의 오른쪽부터 검색시 사용
 
