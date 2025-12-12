@@ -208,3 +208,29 @@ console.log(sortedPrices);
 const filterArray = prices.filter((p) => p > 6);
 
 console.log(filterArray);
+
+// ----------------------------------------------------
+// reduce() 메서드
+// - 첫번째 인수: 함수
+// - 두번째 인수: 시작하려는 초기값
+// - 배열의 값을 단일 값으로 결합할 때 매우 유용함
+
+// let sum = 0;
+
+// prices.forEach((price) => {
+//   sum += price;
+// });
+
+// console.log(sum);
+
+// - prevValue: 설정한 초기값 (reduce 메서드의 두번째 인수를 가리킴) -> 미설정시 'undefined'
+// - curValue: 현재 실행하고 있는 배열의 첫번째 요소
+const sum = prices.reduce((prevValue, curValue, curIndex, prices) => {
+  return prevValue + curValue;
+}, 0);
+
+// 위 reduce 함수를 화살표 함수로 변환시
+const sum2 = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
+
+console.log(sum);
+console.log(sum2);
