@@ -85,3 +85,17 @@ console.log(removeElements); // ["Good Food"]
 // 항목 개수 미설정시 모든 항목 삭제 -> 빈배열 반환
 // hobbies.splice(0) // []
 console.log(hobbies); // ["Sports", "Coding"]
+
+// ----------------------------------------------------
+const testResults = [1, 5.3, 1.5, 10.99, -5, 10];
+
+// slice() 메서드
+// - 배열을 복사하여 새로운 배열을 만들어냄
+const storedResults = testResults.slice(); // 복사본 생성
+
+testResults.push(5.91);
+console.log(storedResults, testResults);
+
+// - 인덱스를 활용하여 배열 범위 선택이 가능함
+// 단, 시작 인덱스는 포함이나 끝 인덱스는 미포함 -> 끝 인덱스는 시작 인덱스보다 커야함
+const storedResults2 = testResults.slice(0, 2);
