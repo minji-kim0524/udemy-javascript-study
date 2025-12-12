@@ -200,8 +200,11 @@ console.log(sortedPrices);
 // - 기존 배열은 유지하면서 새로운 배열이 반환됨(복사본 생성)
 // - 인자로 전달한 함수에서 값이 반환되는 메서드
 // - 필터조건에 true인 값들만 남고 false인 값들은 삭제됨
-const filterArray = prices.filter((price, index, prices) => {
-  return price > 6;
-});
+// const filterArray = prices.filter((price, index, prices) => {
+//   return price > 6;
+// });
+
+// 화살표 함수 적용
+const filterArray = prices.filter((p) => p > 6);
 
 console.log(filterArray);
