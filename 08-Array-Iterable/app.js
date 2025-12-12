@@ -29,7 +29,7 @@ console.log(moreNumbers); // (3) ["H", "i", "!"]
 console.log(arrayListItems);
 
 // 배열 저장
-const hobbies = ["Cooking", "Sports"];
+// const hobbies = ["Cooking", "Sports"];
 const personalData = [30, "Max", { moreDetail: [] }];
 
 // 중첩 또는 다차원 배열
@@ -49,3 +49,25 @@ for (const data of analyticsData) {
 
 // 배열은 인덱스를 기반으로 함
 console.log(personalData[1]); // "Max"
+
+// 배열에 데이터 추가하기
+const hobbies = ["Sports", "Cooking"];
+// - push: 배열의 마지막에 추가
+hobbies.push("Reading");
+console.log(hobbies); // ["Sports", "Cooking", "Reading"]]
+
+// - unshift: 배열의 첫 부분에 추가
+hobbies.unshift("Coding");
+console.log(hobbies); // ["Coding", "Sports", "Cooking", "Reading"]
+
+// - pop: 배열의 마지막 요소 제거
+const poppedValue = hobbies.pop();
+console.log(hobbies); // ["Coding", "Sports", "Cooking"]
+
+// - shift: 배열의 첫번째 요소 제거
+hobbies.shift();
+console.log(hobbies); // ["Sports", "Cooking"]
+
+// 특정 위치의 요소 교체하기
+hobbies[1] = "Coding";
+console.log(hobbies); // ["Sports", "Coding"]
