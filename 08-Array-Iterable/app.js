@@ -146,3 +146,23 @@ const maxIndex = personData.findIndex((person, idx, persons) => {
 });
 
 console.log(maxIndex);
+
+// ----------------------------------------------------
+// forEach() 메서드
+const prices = [10.99, 5.99, 3.99, 6.59];
+const tax = 0.19;
+const taxAdjustedPrices = [];
+
+// for of 반복문
+// for (const price of prices) {
+//   taxAdjustedPrices.push(price * (1 + tax));
+// }
+
+// forEach()문
+// - for of 반복문에서는 할 수 없는 인덱스에 엑세스 할 수 있다는 장점이 있음
+prices.forEach((price, idx, prices) => {
+  const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
+  taxAdjustedPrices.push(priceObj);
+});
+
+console.log(taxAdjustedPrices);
