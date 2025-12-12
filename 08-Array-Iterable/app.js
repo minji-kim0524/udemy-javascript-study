@@ -151,7 +151,7 @@ console.log(maxIndex);
 // forEach() 메서드
 const prices = [10.99, 5.99, 3.99, 6.59];
 const tax = 0.19;
-const taxAdjustedPrices = [];
+// const taxAdjustedPrices = [];
 
 // for of 반복문
 // for (const price of prices) {
@@ -160,9 +160,20 @@ const taxAdjustedPrices = [];
 
 // forEach()문
 // - for of 반복문에서는 할 수 없는 인덱스에 엑세스 할 수 있다는 장점이 있음
-prices.forEach((price, idx, prices) => {
+// prices.forEach((price, idx, prices) => {
+//   const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
+//   taxAdjustedPrices.push(priceObj);
+// });
+
+// console.log(taxAdjustedPrices);
+
+// map() 메서드
+// - 배열의 각 요소에 관해 전환 가능한 새 요소를 반환해야함
+// -> forEach() 와의 차이점이 바로 "반환값" 이 있다는 것임
+
+const taxAdjustedPrices = prices.map((price, idx, prices) => {
   const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
-  taxAdjustedPrices.push(priceObj);
+  return priceObj;
 });
 
 console.log(taxAdjustedPrices);
