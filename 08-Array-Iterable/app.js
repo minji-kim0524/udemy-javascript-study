@@ -114,7 +114,7 @@ console.log(storedResults, testResults);
 // ----------------------------------------------------
 // indexOf()
 // - 배열 내에서 일치하는 첫번째 요소의 인덱스를 반환하고 종료됨
-console.log(testResults, indexOf(1.5));
+console.log(testResults.indexOf(1.5));
 
 // includes() 메서드
 // - 불리언값(true/false)을 반환함 -> 배열의 일부인지를 확인할 때 유용함
@@ -177,3 +177,19 @@ const taxAdjustedPrices = prices.map((price, idx, prices) => {
 });
 
 console.log(taxAdjustedPrices);
+
+// sort() 메서드
+// - 배열 정렬 메서드
+// - 기본적으로 전체를 문자열로 변환하여 문자열 논리로 정렬을 진행함
+const sortedPrices = prices.sort((a, b) => {
+  if (a > b) {
+    return -1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return 1;
+  }
+});
+// console.log(sortedPrices.reverse());
+// reverse() 를 사용하지 않고 sort() 의 논리만 수정하면 그대로 출력해도 문제없음
+console.log(sortedPrices);
