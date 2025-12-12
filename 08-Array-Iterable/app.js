@@ -71,3 +71,17 @@ console.log(hobbies); // ["Sports", "Cooking"]
 // 특정 위치의 요소 교체하기
 hobbies[1] = "Coding";
 console.log(hobbies); // ["Sports", "Coding"]
+
+// - splice: 두 요소사이에 요소 추가하기
+hobbies.splice(0, 0, "Good Food");
+console.log(hobbies); // ["Good Food", "Sports", "Coding"]
+
+// - splice: 특정 위치의 요소 삭제하기
+// hobbies.splice(0, 1);
+// 삭제한 요소를 반환도 함
+const removeElements = hobbies.splice(0, 1);
+console.log(removeElements); // ["Good Food"]
+// 음수 인덱스 지정가능 -> 지정시 배열의 끝으로 이동하여 오른쪽부터 확인
+// 항목 개수 미설정시 모든 항목 삭제 -> 빈배열 반환
+// hobbies.splice(0) // []
+console.log(hobbies); // ["Sports", "Coding"]
