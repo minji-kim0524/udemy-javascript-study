@@ -91,11 +91,22 @@ const testResults = [1, 5.3, 1.5, 10.99, -5, 10];
 
 // slice() 메서드
 // - 배열을 복사하여 새로운 배열을 만들어냄
-const storedResults = testResults.slice(); // 복사본 생성
+// const storedResults = testResults.slice(); // 복사본 생성
 
-testResults.push(5.91);
-console.log(storedResults, testResults);
+// testResults.push(5.91);
+// console.log(storedResults, testResults);
 
 // - 인덱스를 활용하여 배열 범위 선택이 가능함
 // 단, 시작 인덱스는 포함이나 끝 인덱스는 미포함 -> 끝 인덱스는 시작 인덱스보다 커야함
-const storedResults2 = testResults.slice(0, 2);
+// const storedResults2 = testResults.slice(0, 2);
+
+// ----------------------------------------------------
+// concat() 메서드
+// - concat에 보내는 배열의 모든 요소를 기본 배여레 새로운 요소로 추가하여
+// 새로운 배열을 반환함 -> 즉, 배열의 복사본을 반환함
+// - 배열의 데이터를 기존의 배열에 합칠 때 유용함
+const storedResults = testResults.concat([3.99, 2]);
+
+testResults.push(5.91);
+
+console.log(storedResults, testResults);
