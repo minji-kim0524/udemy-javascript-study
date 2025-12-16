@@ -276,3 +276,11 @@ persons.push({ name: "Anna", age: 29 });
 persons[0].age = 31;
 
 console.log(persons, copiedPersons);
+
+// ----------------------------------------------------
+// 배열 구조 분해
+// - 배열을 작업하기 원하는 변수로 분리할 때 사용하는 구문
+const nameData = ["Max", "Schwarz", "Mr", 30];
+
+const [firstName, lastName, ...otherInformation] = nameData;
+console.log(firstName, lastName, otherInformation);
