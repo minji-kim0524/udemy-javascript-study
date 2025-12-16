@@ -54,3 +54,22 @@ for (const value of personData.values()) {
 // - 전달된 키에 해당하는 요소를 Map에서 삭제
 
 console.log(personData.size);
+
+// ----------------------------------------------------
+// WeakSet & WeakMap
+// WeakSet
+// - 정확히 객체 데이터를 저장해야함
+// - 내부적으로만 객체를 저장할 수 있으므로 실제로는 해당 객체를 지우는 것임
+// - 가비지 컬렉션으로 Set에 포함되어 있는 해당 항목을 직접 삭제해서 더 이상 코드의 일부로 남아 있지 않도록 함
+// => Set에 저장한 객체 데이터 중 사용하지 않게 된 데이터의 일부는 직접 내보내서 해당 데이터가 가비지로 수집되게 함
+
+let person = { name: "Max" };
+const persons = new WeakSet();
+persons.add(person);
+
+// ...some operations
+// 아래와 같이 이 객체를 지정해 놓은 모든 위치를 리셋했다면
+// Set도 더 이상 해당 객체를 저장해 두지 않고 삭제함
+person = null;
+
+console.log(persons);
