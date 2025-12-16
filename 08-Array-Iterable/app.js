@@ -247,5 +247,32 @@ console.log(transformedData);
 // join() 메서드
 // - 쪼개진 배열요소를 하나의 문자열로 합쳐서 반환
 const nameFragments = ["Max", "Schwarz"];
-const name = nameFragments.join();
+const name = nameFragments.join(" ");
 console.log(name);
+
+// ----------------------------------------------------
+// 전개구문이란?
+// - 연산자가 아닌 배열의 모든 요소를 꺼내 배열의 복사본을 생성함
+// - 요소를 메서드의 인자 리스트로 복사하고 배분하는 데 매우 유용한 도구
+const copiedNameFragments = [...nameFragments];
+nameFragments.push("Mr");
+console.log(nameFragments, copiedNameFragments);
+
+// Math 메서드
+// - 배열이 아닌 숫자만 인자로 전달해야함
+console.log(Math.min(...prices));
+
+const persons = [
+  { name: "Max", age: 30 },
+  { name: "Manuel", age: 31 },
+];
+// const copiedPersons = [...persons];
+const copiedPersons = persons.map((person) => ({
+  name: person.name,
+  age: person.age,
+}));
+
+persons.push({ name: "Anna", age: 29 });
+persons[0].age = 31;
+
+console.log(persons, copiedPersons);
