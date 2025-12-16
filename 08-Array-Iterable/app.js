@@ -234,3 +234,18 @@ const sum2 = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
 
 console.log(sum);
 console.log(sum2);
+
+// ----------------------------------------------------
+
+const data = "new york;10.99;2000";
+
+// split() 메서드
+// - 문자열을 구분자로 구분하여 배열로 반환
+const transformedData = data.split(";");
+console.log(transformedData);
+
+// join() 메서드
+// - 쪼개진 배열요소를 하나의 문자열로 합쳐서 반환
+const nameFragments = ["Max", "Schwarz"];
+const name = nameFragments.join();
+console.log(name);
