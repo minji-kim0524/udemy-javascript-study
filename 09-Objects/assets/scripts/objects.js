@@ -1,5 +1,10 @@
-const person = {
-  name: "Max",
+const movieList = document.getElementById("movie-list");
+
+movieList.style["background-color"] = "red";
+movieList.style.display = "block";
+
+let person = {
+  "first name": "Max",
   age: 30,
   hobbies: ["Sports", "Cooking"],
   greet: function () {
@@ -17,3 +22,5 @@ console.log(person);
 console.log(person.age); // undefined
 
 person.greet();
+
+console.log(person["first name"]);
