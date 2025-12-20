@@ -45,6 +45,25 @@ const searchBtn = document.getElementById("search-btn");
 
 const movies = [];
 
+const renderMovies = () => {
+  const movieList = document.getElementById("movie-list");
+
+  if (movies.length === 0) {
+    movieList.classList.remove("visible");
+  } else {
+    movieList.classList.add("visible");
+  }
+
+  movieList.innerHTML = "";
+
+  movies.forEach((movie) => {
+    const movieEl = document.createElement("li");
+    // 체인: 다중 프로퍼티 요청
+    movieEl.textContent = movie.info.title;
+    movieList.append(movieEl);
+  });
+};
+
 const addMovieHandler = () => {
   const title = document.getElementById("title").value;
   const extraName = document.getElementById("extra-name").value;
@@ -66,7 +85,8 @@ const addMovieHandler = () => {
   };
 
   movies.push(newMovie);
-  console.log(newMovie);
+  // console.log(newMovie);
+  renderMovies();
 };
 
 addMovieBtn.addEventListener("click", addMovieHandler);
