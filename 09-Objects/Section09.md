@@ -6,3 +6,14 @@
 
 - `{}` 를 사용하여 생성
 - 배열도 포함됨
+
+## 전개(spread) 연산자 `...`
+
+- 모든 중첩 참조 값과 주소를 그대로 유지
+- 복제본을 만들거나 복제본의 일부를 덮어쓸 때 적합
+
+// 예제 <br />
+const person = {name: 'Max', age: 30, hobbies: ['Sports', 'Cooking']}
+const person2 = {...person}
+
+console.log(person2) // {name: 'Max', hobbies: Array(2), age: 30}
