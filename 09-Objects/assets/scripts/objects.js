@@ -58,6 +58,13 @@ const renderMovies = () => {
 
   movies.forEach((movie) => {
     const movieEl = document.createElement("li");
+    let text = movie.info.title + "-";
+    for (const key in movie.info) {
+      if (key !== title) {
+        text = text + `${key}: ${movie.info[key]}`;
+      }
+    }
+    movieEl.textContent = text;
     // 체인: 다중 프로퍼티 요청
     movieEl.textContent = movie.info.title;
     movieList.append(movieEl);
