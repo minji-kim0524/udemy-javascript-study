@@ -45,7 +45,7 @@ const searchBtn = document.getElementById("search-btn");
 
 const movies = [];
 
-const renderMovies = () => {
+const renderMovies = (filter = "") => {
   const movieList = document.getElementById("movie-list");
 
   if (movies.length === 0) {
@@ -56,17 +56,22 @@ const renderMovies = () => {
 
   movieList.innerHTML = "";
 
-  movies.forEach((movie) => {
+  // 추가될 영화조정
+  const filteredMovies = !filter
+    ? movies
+    : movies.filter((movie) => movie.info.tilte.includes(filter));
+
+  filteredMovies.forEach((movie) => {
     const movieEl = document.createElement("li");
     let text = movie.info.title + "-";
     for (const key in movie.info) {
-      if (key !== title) {
+      if (key !== "title") {
         text = text + `${key}: ${movie.info[key]}`;
       }
     }
     movieEl.textContent = text;
     // 체인: 다중 프로퍼티 요청
-    movieEl.textContent = movie.info.title;
+    // movieEl.textContent = movie.info.title;
     movieList.append(movieEl);
   });
 };
@@ -96,4 +101,11 @@ const addMovieHandler = () => {
   renderMovies();
 };
 
+const searchMovieHandler = () => {
+  // 사용자 입력 불러오기
+  const filterTerm = document.getElementById("filter-title").value;
+  renderMovies(filterTerm);
+};
+
 addMovieBtn.addEventListener("click", addMovieHandler);
+searchBtn.addEventListener("click", searchMovieHandler);
