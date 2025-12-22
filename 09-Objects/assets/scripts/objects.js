@@ -101,10 +101,15 @@ const addMovieHandler = () => {
       [extraName]: extraValue,
     },
     id: Math.random().toString(),
-    getFormattedTitle: function () {
-      // this 키워드
-      // - 함수 내에서 해당 함수가 객체의 일부인지와 상관없이
-      // this 키워드는 해당 함수를 호출한 모든 항목을 참조함
+    // this 키워드
+    // - 함수 내에서 해당 함수가 객체의 일부인지와 상관없이
+    // this 키워드는 해당 함수를 호출한 모든 항목을 참조함
+    // getFormattedTitle: function () {
+    //   return this.info.title.toUpperCase();
+    // },
+
+    // 위 메서드를 아래와 같은 방식으로 작성할 수 도 있음
+    getFormattedTitle() {
       return this.info.title.toUpperCase();
     },
   };
