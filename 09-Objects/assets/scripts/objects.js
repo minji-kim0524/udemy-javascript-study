@@ -134,7 +134,9 @@ const addMovieHandler = () => {
   renderMovies();
 };
 
-const searchMovieHandler = () => {
+const searchMovieHandler = function () {
+  // 브라우저는 이벤트 리스너에서 이벤트를 트리거하는 DOM요소에 this를 바인딩함
+  console.log(this); // <button id="search-btn">Search</button>
   // 사용자 입력 불러오기
   const filterTerm = document.getElementById("filter-title").value;
   renderMovies(filterTerm);
