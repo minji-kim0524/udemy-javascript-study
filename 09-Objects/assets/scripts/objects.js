@@ -71,9 +71,21 @@ const renderMovies = (filter = "") => {
     // const { title: movieTitle } = info;
     let { getFormattedTitle } = movie;
     console.log(this); // window
+    // bind() 메서드
+    // - 나중에 실행할 함수를 준비 -> 마지막에는 새로운 함수 객체를 반환
     // - 첫번째 인자: 본 함수 내에서 this 가 참조로 할 대상을 기리킴
     getFormattedTitle = getFormattedTitle.bind(movie);
-    let text = movie.getFormattedTitle() + "-";
+
+    // call() 메서드
+    // - bind 와 다르게 함수를 바로 실행함
+    // - 첫번째 인자인 this가 가리키는 내용을 변경할 때 함수를 실행
+    // let text = movie.getFormattedTitle.call(movie) + "-";
+
+    // apply() 메서드
+    // - call 메서드와 비슷하나, 다음 인자를 무한하게 추가할 수 없으며, 두번째 인자에는 배열이 옴
+    // 이 배열은 함수가 가지게 될 다양한 인자에 대한 값임
+    let text = movie.getFormattedTitle.apply(movie) + "-";
+    // let text = movie.getFormattedTitle() + "-";
     for (const key in info) {
       if (key !== "title") {
         text = text + `${key}: ${info[key]}`;
