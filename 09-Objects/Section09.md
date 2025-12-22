@@ -17,3 +17,11 @@ const person = {name: 'Max', age: 30, hobbies: ['Sports', 'Cooking']}
 const person2 = {...person}
 
 console.log(person2) // {name: 'Max', hobbies: Array(2), age: 30}
+
+## Object.assign()
+
+- 기존 객체의 프로퍼티를 새로운 객체에 할당
+
+## 배열 구조 분해
+
+- 배열에서 요소를 빼내서 변수에 저장할 때에 사용
