@@ -63,6 +63,9 @@ const renderMovies = (filter = "") => {
 
   filteredMovies.forEach((movie) => {
     const movieEl = document.createElement("li");
+    // 프로퍼티 존재 여부 확인방법
+    // 1. if ('info' in movie) {}
+    // 2. if (movie.info === undefined) {}
     const { info, ...otherProps } = movie;
     console.log(otherProps);
     const { title: movieTitle } = info;
