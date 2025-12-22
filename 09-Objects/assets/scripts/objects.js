@@ -68,8 +68,9 @@ const renderMovies = (filter = "") => {
     // 2. if (movie.info === undefined) {}
     const { info, ...otherProps } = movie;
     console.log(otherProps);
-    const { title: movieTitle } = info;
-    let text = movieTitle + "-";
+    // const { title: movieTitle } = info;
+    // const { getFormattedTitle } = movie;
+    let text = movie.getFormattedTitle() + "-";
     for (const key in info) {
       if (key !== "title") {
         text = text + `${key}: ${info[key]}`;
@@ -100,6 +101,12 @@ const addMovieHandler = () => {
       [extraName]: extraValue,
     },
     id: Math.random().toString(),
+    getFormattedTitle: function () {
+      // this 키워드
+      // - 함수 내에서 해당 함수가 객체의 일부인지와 상관없이
+      // this 키워드는 해당 함수를 호출한 모든 항목을 참조함
+      return this.info.title.toUpperCase();
+    },
   };
 
   movies.push(newMovie);
