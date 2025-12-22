@@ -69,7 +69,10 @@ const renderMovies = (filter = "") => {
     const { info, ...otherProps } = movie;
     console.log(otherProps);
     // const { title: movieTitle } = info;
-    // const { getFormattedTitle } = movie;
+    let { getFormattedTitle } = movie;
+    console.log(this); // window
+    // - 첫번째 인자: 본 함수 내에서 this 가 참조로 할 대상을 기리킴
+    getFormattedTitle = getFormattedTitle.bind(movie);
     let text = movie.getFormattedTitle() + "-";
     for (const key in info) {
       if (key !== "title") {
