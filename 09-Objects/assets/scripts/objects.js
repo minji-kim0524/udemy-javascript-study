@@ -87,7 +87,7 @@ const renderMovies = (filter = "") => {
     let text = movie.getFormattedTitle.apply(movie) + "-";
     // let text = movie.getFormattedTitle() + "-";
     for (const key in info) {
-      if (key !== "title") {
+      if (key !== "title" && key !== "_title") {
         text = text + `${key}: ${info[key]}`;
       }
     }
@@ -112,7 +112,24 @@ const addMovieHandler = () => {
 
   const newMovie = {
     info: {
-      title,
+      // title,
+      // setter 생성
+      // - 값이 프로퍼티에 할당되고 수락되거나 다른 값으로 set 될때 유효성 검사를 할 수 있음
+      // - 생략시 읽기 전용 속성
+      set title(val) {
+        if (val.trim() === "") {
+          this._title = "DEFAULT";
+          return;
+        }
+        this._title = val;
+      },
+      // getter 생성
+      // - 프로퍼티와 같이 접근할 수 있음
+      // - 프로퍼티에 접근할 때 무엇을 할지 정의할 수 있음
+      // - 생략시 읽을 수 없는 프로퍼티가 생김
+      get title() {
+        return this._title.toUpperCase(); // 이 경우 아래 getFormattedTitle() 와 중복 -> getFormattedTitle() 생략가능
+      },
       [extraName]: extraValue,
     },
     id: Math.random().toString(),
@@ -124,10 +141,14 @@ const addMovieHandler = () => {
     // },
 
     // 위 메서드를 아래와 같은 방식으로 작성할 수 도 있음
-    getFormattedTitle() {
-      return this.info.title.toUpperCase();
-    },
+    // getFormattedTitle() {
+    //   return this.info.title.toUpperCase();
+    // },
   };
+
+  // 값 할당
+  newMovie.info.title = title;
+  console.log(newMovie.info.title);
 
   movies.push(newMovie);
   // console.log(newMovie);
