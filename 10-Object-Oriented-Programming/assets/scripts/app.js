@@ -1,9 +1,9 @@
 class Product {
   // 클래스 정의 안에서는 값을 등호로 지정
-  title = "DEFAULT";
-  imageUrl;
-  description;
-  price;
+  //   title = "DEFAULT";
+  //   imageUrl;
+  //   description;
+  //   price;
 
   // 생성자 메서드(함수)
   // - 매개변수들에 대한 값을 지정할 수 있음
