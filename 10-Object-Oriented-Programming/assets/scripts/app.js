@@ -1,5 +1,17 @@
+class Product {
+  // 클래스 정의 안에서는 값을 등호로 지정
+  title = "DEFAULT";
+  imageUrl;
+  description;
+  price;
+}
+
+console.log(new Product());
+
 const productList = {
   products: [
+    // 새로운 객체 생성
+    new Product(),
     {
       title: "A Pillow",
       imageUrl:
