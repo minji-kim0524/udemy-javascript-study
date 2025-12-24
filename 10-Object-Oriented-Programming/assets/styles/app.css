@@ -10,6 +10,10 @@ body {
   margin: 0;
 }
 
+li {
+  list-style: none;
+}
+
 header {
   position: fixed;
   top: 0;
