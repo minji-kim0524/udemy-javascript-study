@@ -19,16 +19,37 @@ class Product {
 class ShoppingCart {
   items = [];
 
-  // 화면 내용 업데이트 메서드
-  addProduct(product) {
-    this.items.push(product);
-    this.totalOutput.innerHTML = `<h2>Totla: \$${1}</h2>`;
+  set cartItems(value) {
+    this.items = value;
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(
+      2
+    )}</h2>`;
   }
+
+  get totalAmount() {
+    const sum = this.items.reduce(
+      (prevValue, curItem) => prevValue + curItem.price,
+      0
+    );
+    return sum;
+  }
+
+  addProduct(product) {
+    const updatedItems = [...this.items];
+    updatedItems.push(product);
+    this.cartItems = updatedItems;
+  }
+
+  // 화면 내용 업데이트 메서드
+  // addProduct(product) {
+  //   this.items.push(product);
+  //   this.totalOutput.innerHTML = `<h2>Totla: \$${this.totalAmount}</h2>`;
+  // }
 
   render() {
     const cartEl = document.createElement("section");
     cartEl.innerHTML = `
-        <h2>Totla: \$${0}</h2>
+        <h2>Total: \$${0}</h2>
         <button>Order Now!</button>
       `;
     cartEl.className = "cart";
@@ -50,16 +71,16 @@ class ProductItem {
     const prodEl = document.createElement("li");
     prodEl.className = "product-item";
     prodEl.innerHTML = `
-            <div>
-                <img src="${this.product.imageUrl}" alt="${this.product.title}">
-                <div class="product-item__content">
-                    <h2>${this.product.title}</h2>
-                    <h3>\$${this.product.price}</h3>
-                    <p>${this.product.description}}</p>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-          `;
+        <div>
+          <img src="${this.product.imageUrl}" alt="${this.product.title}">
+          <div class="product-item__content">
+          <h2>${this.product.title}</h2>
+          <h3>\$${this.product.price}</h3>
+          <p>${this.product.description}}</p>
+          <button>Add to Cart</button>
+          </div>
+        </div>
+      `;
     const addCartButton = prodEl.querySelector("button");
     addCartButton.addEventListener("click", this.addToCart.bind(this));
     return prodEl;
@@ -85,7 +106,6 @@ class ProductList {
   constructor() {}
 
   render() {
-    const renderHook = document.getElementById("app");
     const prodList = document.createElement("ul");
     prodList.claasName = "product-list";
     for (const prod of this.products) {
