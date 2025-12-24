@@ -19,6 +19,12 @@ class Product {
 class ShoppingCart {
   items = [];
 
+  // 화면 내용 업데이트 메서드
+  addProduct(product) {
+    this.items.push(product);
+    this.totalOutput.innerHTML = `<h2>Totla: \$${1}</h2>`;
+  }
+
   render() {
     const cartEl = document.createElement("section");
     cartEl.innerHTML = `
@@ -26,6 +32,7 @@ class ShoppingCart {
         <button>Order Now!</button>
       `;
     cartEl.className = "cart";
+    this.totalOutput = cartEl.querySelector("h2");
     return cartEl;
   }
 }
@@ -36,8 +43,7 @@ class ProductItem {
   }
 
   addToCart() {
-    console.log("Adding product to cart...");
-    console.log(this.product);
+    App.addProductToCart(this.product);
   }
 
   render() {
@@ -95,8 +101,8 @@ class Shop {
   render() {
     const renderHook = document.getElementById("app");
 
-    const cart = new ShoppingCart();
-    const cartEl = cart.render();
+    this.cart = new ShoppingCart();
+    const cartEl = this.cart.render();
     const productList = new ProductList();
     const prodListEl = productList.render();
     // console.log(new Product());
@@ -106,8 +112,21 @@ class Shop {
   }
 }
 
-const shop = new Shop();
-shop.render();
+class App {
+  static cart;
+
+  static init() {
+    const shop = new Shop();
+    shop.render();
+    this.cart = shop.cart;
+  }
+
+  static addProductToCart(product) {
+    this.cart.addProduct(product);
+  }
+}
+
+App.init();
 
 // const productList = {
 //   products: [
