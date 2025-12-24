@@ -116,6 +116,8 @@ class App {
   static cart;
 
   static init() {
+    // shop은 객체를 반환(참조)함 -> 객체 리터럴 표기법으로 구하는 것과 동일
+    // - 객체 구조 분해 가능
     const shop = new Shop();
     shop.render();
     this.cart = shop.cart;
