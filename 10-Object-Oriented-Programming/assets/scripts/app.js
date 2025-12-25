@@ -25,9 +25,11 @@ class ElementAttribute {
 }
 
 class Component {
-  constructor(renderHookId) {
+  constructor(renderHookId, shouldRender = true) {
     this.hookId = renderHookId;
-    this.render();
+    if (shouldRender) {
+      this.render();
+    }
   }
 
   render() {}
@@ -96,8 +98,9 @@ class ShoppingCart extends Component {
 
 class ProductItem extends Component {
   constructor(product, renderHookId) {
-    super(renderHookId);
+    super(renderHookId, false);
     this.product = product;
+    this.render();
   }
 
   addToCart() {
@@ -124,33 +127,45 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-  products = [
-    new Product(
-      "A Pillow",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlNPBR_0gPsRmSwOyHcdWdk8-LhSR-rx6csA&s",
-      "A soft pillow!",
-      19.99
-    ),
-    new Product(
-      "A Carpet",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUBXEH_PVtgNjPc8NzeXl1MRSVK-bM5uHOQ&s",
-      "A carpet which you migth like =- or not.",
-      89.99
-    ),
-  ];
-
-  // 생성자 안에는 생성 중인 객체를 참조하는데, new 키워드가 그 역할을 담당함
+  products = [];
 
   constructor(renderHookId) {
     super(renderHookId);
+    this.fetchProducts();
   }
+
+  fetchProducts() {
+    this.products = [
+      new Product(
+        "A Pillow",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlNPBR_0gPsRmSwOyHcdWdk8-LhSR-rx6csA&s",
+        "A soft pillow!",
+        19.99
+      ),
+      new Product(
+        "A Carpet",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUBXEH_PVtgNjPc8NzeXl1MRSVK-bM5uHOQ&s",
+        "A carpet which you migth like =- or not.",
+        89.99
+      ),
+    ];
+    this.renderProducts();
+  }
+
+  renderProducts() {
+    for (const prod of this.products) {
+      new ProductItem(prod, "prod-list");
+    }
+  }
+
+  // 생성자 안에는 생성 중인 객체를 참조하는데, new 키워드가 그 역할을 담당함
 
   render() {
     const prodList = this.createRootElement("ul", "product-list", [
       new ElementAttribute("id", "prod-list"),
     ]);
-    for (const prod of this.products) {
-      new ProductItem(prod, "prod-list");
+    if (this.products && this.products.length > 0) {
+      this.renderProducts();
     }
   }
 }
