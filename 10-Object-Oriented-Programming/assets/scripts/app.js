@@ -18,6 +18,7 @@ class Product {
 
 class ElementAttribute {
   constructor(attrName, attrValue) {
+    // this는 늘 메서드를 참조한다!
     this.name = attrName;
     this.value = attrValue;
   }
@@ -26,7 +27,10 @@ class ElementAttribute {
 class Component {
   constructor(renderHookId) {
     this.hookId = renderHookId;
+    this.render();
   }
+
+  render() {}
 
   createRootElement(tag, cssClasses, attributes) {
     const rootElement = document.createElement(tag);
@@ -135,6 +139,8 @@ class ProductList extends Component {
     ),
   ];
 
+  // 생성자 안에는 생성 중인 객체를 참조하는데, new 키워드가 그 역할을 담당함
+
   constructor(renderHookId) {
     super(renderHookId);
   }
@@ -144,21 +150,21 @@ class ProductList extends Component {
       new ElementAttribute("id", "prod-list"),
     ]);
     for (const prod of this.products) {
-      const productItem = new ProductItem(prod, "prod-list");
-      productItem.render();
+      new ProductItem(prod, "prod-list");
     }
   }
 }
 
+// 방법1. extends Component
+// 방법2. 기본 클래스에서 확장해서 사용하는 기능이 없으므로 굳이 extends 하지않고 this.render()를 사용
 class Shop {
+  constructor() {
+    this.render();
+  }
+
   render() {
     this.cart = new ShoppingCart("app");
-    this.cart.render();
     const productList = new ProductList("app");
-    productList.render();
-    // console.log(new Product());
-
-    // renderHook.append(cartEl);
   }
 }
 
@@ -169,7 +175,6 @@ class App {
     // shop은 객체를 반환(참조)함 -> 객체 리터럴 표기법으로 구하는 것과 동일
     // - 객체 구조 분해 가능
     const shop = new Shop();
-    shop.render();
     this.cart = shop.cart;
   }
 
