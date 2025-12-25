@@ -69,7 +69,14 @@ class ShoppingCart extends Component {
 
   constructor(renderHookId) {
     // 부모 클래스의 생성자 호출
-    super(renderHookId);
+    super(renderHookId, false);
+
+    // 방법2 적용시 프로퍼티로 변경
+    this.orderProducts = () => {
+      console.log("Ordering...");
+      console.log(this.items);
+    };
+    this.render();
   }
 
   addProduct(product) {
@@ -91,6 +98,11 @@ class ShoppingCart extends Component {
         <h2>Total: \$${0}</h2>
         <button>Order Now!</button>
       `;
+    const orderButton = cartEl.querySelector("button");
+    // 방법1.
+    // orderButton.addEventListener("click", () => this.orderProducts());
+    // 방법2.
+    orderButton.addEventListener("click", this.orderProducts);
 
     this.totalOutput = cartEl.querySelector("h2");
   }
